@@ -1,7 +1,3 @@
-Certo! Ecco la versione del `README.md` in **inglese**, scritta al **singolare** (quindi riferita a un singolo autore/maintainer), sempre con un tono tecnico e professionale, adatto a un progetto GitHub per una collection di contenuti per **Flipper Zero**.
-
----
-
 # 🐬 Flipper Zero Collection
 
 A personal collection of resources, payloads, and modules for the **Flipper Zero** multi-tool device.  
