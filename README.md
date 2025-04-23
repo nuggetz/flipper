@@ -11,7 +11,7 @@ This repository is designed to extend Flipper's capabilities with organized, rea
 
 3. Copy the relevant folders to the SD card (`/subghz/`, `/nfc/`, `/infrared/`, etc.).
 
-   You can do this using [qFlipper](https://flipperzero.one/update) or by mounting the SD card as a USB mass storage device.
+   You can do this using [qFlipper](https://flipperzero.one/update).
    
 ---
 
@@ -22,13 +22,4 @@ Do **not** use them on systems or devices without **explicit permission**.
 Always verify local regulations before using radio frequencies or cloning access credentials.
 
 ---
-
-## 🤝 Contributions
-
-This is a personal project, but feel free to open pull requests if you'd like to share improvements or additional resources.  
-Issues and suggestions are also welcome.
-
----
-
-🐬 *Happy Hacking with Flipper Zero!*
 ```
