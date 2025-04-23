@@ -1,0 +1,6 @@
+OneDrive.exe
+msedge.exe
+SecurityHealthSystray.exe
+vmtoolsd.exe
+MicrosoftEdge
+Windows Defender
