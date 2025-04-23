@@ -1,0 +1,11 @@
+TeamViewer
+AnyDesk
+UltraVNC
+Tor Browser
+Wireshark
+Nmap
+Kali
+Metasploit
+OpenVPN
+BitTorrent
+uTorrent
