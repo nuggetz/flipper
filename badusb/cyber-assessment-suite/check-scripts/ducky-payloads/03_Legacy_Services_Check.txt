@@ -1,0 +1,28 @@
+REM Author: nuggetz
+REM Script: Cyber Assessment suite - Check Legacy Services
+REM Description: Download and execute the legacy services check PowerShell script
+REM Target: Windows 10/11
+REM Note: Adjust ALT key combo for UAC depending on keyboard layout (e.g., ALT+S for ITA, ALT+Y for US)
+
+DELAY 500
+GUI r
+DELAY 500
+STRING powershell
+ENTER
+DELAY 800
+
+REM Ensure temp directory exists
+STRING if (-not (Test-Path 'C:\temp')) { New-Item -ItemType Directory -Path 'C:\temp' }
+ENTER
+DELAY 800
+
+REM Download the legacy services check script
+STRING iwr -Uri "https://raw.githubusercontent.com/nuggetz/flipper/refs/heads/main/badusb/cyber-assessment-suite/check-scripts/powershell/03_Legacy_Services_Check.ps1" -OutFile "C:\temp\legacy_check.ps1"
+ENTER
+DELAY 1000
+
+REM Execute the script as admin
+STRING Start-Process 'powershell.exe' -ArgumentList '-ExecutionPolicy Bypass -File C:\temp\legacy_check.ps1' -Verb RunAs
+ENTER
+DELAY 1500
+ALT y
