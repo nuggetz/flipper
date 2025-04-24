@@ -1,6 +1,5 @@
 ![License](https://img.shields.io/github/license/nuggetz/flipper)
 ![Last Commit](https://img.shields.io/github/last-commit/nuggetz/flipper)
-![Platform](https://img.shields.io/badge/platform-PowerShell-blue?style=flat-square)
 # 🐬 Flipper Zero Collection
 
 A personal collection of resources, payloads, and modules for the **Flipper Zero** multi-tool device.  
