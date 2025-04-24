@@ -1,5 +1,5 @@
-![License](https://img.shields.io/github/license/nuggetz/flipper?style=flat-square)
-![Last Commit](https://img.shields.io/github/last-commit/license/nuggetz/flipper?style=flat-square)
+![License](https://img.shields.io/github/license/nuggetz/flipper)
+![Last Commit](https://img.shields.io/github/last-commit/nuggetz/flipper)
 ![Platform](https://img.shields.io/badge/platform-PowerShell-blue?style=flat-square)
 # 🐬 Flipper Zero Collection
 
