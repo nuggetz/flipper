@@ -1,8 +1,8 @@
 REM Author: nuggetz
-REM Script: Cyber Assessment suite - Check Policy, Auditing and Logging
-REM Description: Download and execute the policy, auditing and logging check PowerShell script
+REM Script: Cyber Assessment suite - 08_Policy_Auditing_Logging_Check (Download only)
+REM Description: Downloads the script and instructs the user to execute it manually
 REM Target: Windows 10/11
-REM Note: Adjust ALT key combo for UAC depending on keyboard layout (e.g., ALT+S for ITA, ALT+Y for US)
+REM Note: Script is not executed automatically due to elevated permissions requirements
 
 DELAY 500
 GUI r
@@ -16,13 +16,28 @@ STRING if (-not (Test-Path 'C:\temp')) { New-Item -ItemType Directory -Path 'C:\
 ENTER
 DELAY 800
 
-REM Download the policy auditing logging check script
-STRING iwr -Uri "https://raw.githubusercontent.com/nuggetz/flipper/refs/heads/main/badusb/cyber-assessment-suite/check-scripts/powershell/08_Policy_Auditing_Logging_Check.ps1" -OutFile "C:\temp\policy_audit_log_check.ps1"
+REM Download the script to C:\temp
+STRING iwr -Uri "https://raw.githubusercontent.com/nuggetz/flipper/refs/heads/main/badusb/cyber-assessment-suite/check-scripts/powershell/08_Policy_Auditing_Logging_Check.ps1" -OutFile "C:\temp\08_Policy_Auditing_Logging_Check.ps1"
 ENTER
-DELAY 1000
+DELAY 1200
 
-REM Execute the script as admin
-STRING Start-Process 'powershell.exe' -ArgumentList '-ExecutionPolicy Bypass -File C:\temp\policy_audit_log_check.ps1' -Verb RunAs
+REM Create a temporary note file with instructions
+STRING $note = '*** Cyber Assessment Suite - Manual Execution Required ***
 ENTER
-DELAY 1500
-ALT y
+STRING Script downloaded: C:\temp\08_Policy_Auditing_Logging_Check.ps1
+ENTER
+STRING Please open PowerShell IDE as Administrator, then run the script manually.
+ENTER
+STRING This script requires elevated permissions and will not be run automatically.
+ENTER
+STRING '
+ENTER
+DELAY 300
+
+STRING Set-Content -Path "$env:USERPROFILE\Desktop\READ_THIS_FIRST.txt" -Value $note
+ENTER
+DELAY 500
+
+REM Open the text file in Notepad to alert the user
+STRING notepad "$env:USERPROFILE\Desktop\READ_THIS_FIRST.txt"
+ENTER
