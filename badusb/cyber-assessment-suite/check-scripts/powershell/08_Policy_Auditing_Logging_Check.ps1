@@ -21,11 +21,13 @@
 # 08_Policy_Auditing_Logging_Check.ps1
 # Run this with a usb drive named <pentest> inserted or the script will save the results in the \temp folder.
 
+
 $log = @()
 $nonCompliant = 0
 
-# CHECK 1: Audit Policy
+### CHECK 1: Audit Policy
 $auditPolicy = auditpol /get /category:* | Out-String
+
 $categoriesToCheck = @(
     "Logon/Logoff",
     "Account Logon",
@@ -43,7 +45,7 @@ foreach ($category in $categoriesToCheck) {
     }
 }
 
-# CHECK 2: Security log configuration
+### CHECK 2: Security log configuration
 $logConfig = wevtutil gl Security
 $logSizeLine = ($logConfig | Select-String "maxSize").ToString()
 $logRetentionLine = ($logConfig | Select-String "retention").ToString()
@@ -65,15 +67,25 @@ if ($retention -eq "Disabled") {
     $log += "Log retention is enabled."
 }
 
-# CHECK 3: Event Forwarding
-$subs = Get-WinEvent -ListSubscriptions -ErrorAction SilentlyContinue
-if ($subs.Count -gt 0) {
-    $log += "Event forwarding is properly configured."
+### CHECK 3: Basic Event Forwarding
+$wecStatus = Get-Service -Name Wecsvc -ErrorAction SilentlyContinue
+
+if ($wecStatus -and $wecStatus.Status -eq 'Running') {
+    try {
+        $wefSubs = wecutil es 2>&1
+        if ($wefSubs -match "Subscription") {
+            $log += "Event Forwarding is configured: at least one subscription is active."
+        } else {
+            $log += "No Event Forwarding subscriptions found."
+        }
+    } catch {
+        $log += "Could not list Event Forwarding subscriptions: $($_.Exception.Message)"
+    }
 } else {
-    $log += "No event forwarding configured (Event Forwarding is not active)."
+    $log += "Event Forwarding is not active (Windows Event Collector service is not running)."
 }
 
-# Final Status
+### Final assessment
 switch ($nonCompliant) {
     0 {
         $log += "All checks are compliant."
@@ -89,14 +101,14 @@ switch ($nonCompliant) {
     }
 }
 
-# Ensure output directory exists
-if (-not (Test-Path "C:\temp")) {
-    New-Item -Path "C:\temp" -ItemType Directory | Out-Null
+# Save to USB if available or fallback to C:\temp
+$outputPath = if (Test-Path 'E:\pentest') {
+    'E:\pentest\08_Policy_Auditing_Logging_Check.txt'
+} else {
+    "C:\temp\08_Policy_Auditing_Logging_Check.txt"
 }
 
-# Output path logic
-$outputPath = "C:\temp\08_Policy_Auditing_Logging_Check.txt"
 $log | Out-File -FilePath $outputPath -Encoding UTF8
 
-# Optional: output preview
+# Console output
 $log | ForEach-Object { Write-Output $_ }
