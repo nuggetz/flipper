@@ -24,9 +24,8 @@
 $log = @()
 $nonCompliant = 0
 
-### CHECK 1: Audit Policy
+# CHECK 1: Audit Policy
 $auditPolicy = auditpol /get /category:* | Out-String
-
 $categoriesToCheck = @(
     "Logon/Logoff",
     "Account Logon",
@@ -44,7 +43,7 @@ foreach ($category in $categoriesToCheck) {
     }
 }
 
-### CHECK 2: Security log configuration
+# CHECK 2: Security log configuration
 $logConfig = wevtutil gl Security
 $logSizeLine = ($logConfig | Select-String "maxSize").ToString()
 $logRetentionLine = ($logConfig | Select-String "retention").ToString()
@@ -66,16 +65,15 @@ if ($retention -eq "Disabled") {
     $log += "Log retention is enabled."
 }
 
-### CHECK 3: Basic Event Forwarding
+# CHECK 3: Event Forwarding
 $subs = Get-WinEvent -ListSubscriptions -ErrorAction SilentlyContinue
 if ($subs.Count -gt 0) {
     $log += "Event forwarding is properly configured."
 } else {
     $log += "No event forwarding configured (Event Forwarding is not active)."
-    # optional: $nonCompliant++
 }
 
-### Final assessment
+# Final Status
 switch ($nonCompliant) {
     0 {
         $log += "All checks are compliant."
@@ -91,9 +89,14 @@ switch ($nonCompliant) {
     }
 }
 
-# Save to USB if available or fallback
-$outputPath = if (Test-Path 'E:\pentest') { 'E:\pentest\08_Policy_Auditing_Logging_Check.txt' } else { "C:\temp\08_Policy_Auditing_Logging_Check.txt" }
+# Ensure output directory exists
+if (-not (Test-Path "C:\temp")) {
+    New-Item -Path "C:\temp" -ItemType Directory | Out-Null
+}
+
+# Output path logic
+$outputPath = "C:\temp\08_Policy_Auditing_Logging_Check.txt"
 $log | Out-File -FilePath $outputPath -Encoding UTF8
 
-# Console output
+# Optional: output preview
 $log | ForEach-Object { Write-Output $_ }
