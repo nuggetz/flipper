@@ -16,6 +16,11 @@
 
   Project Repository and guides:
   https://github.com/nuggetz/flipper
+
+  WARNING
+  This script is designed to be run locally only.
+  Please ensure it is placed in either 'E:\pentest' or 'C:\temp' before executing.
+  It will NOT be automatically downloaded by the BadUSB script for security reasons.
 #>
 
 # Script: 08_Policy_Auditing_Logging_Check.ps1
