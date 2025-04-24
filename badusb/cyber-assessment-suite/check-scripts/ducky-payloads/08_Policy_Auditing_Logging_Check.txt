@@ -21,8 +21,10 @@ STRING iwr -Uri "https://raw.githubusercontent.com/nuggetz/flipper/refs/heads/ma
 ENTER
 DELAY 1200
 
-REM Create a temporary note file with instructions
-STRING $note = '*** Cyber Assessment Suite - Manual Execution Required ***
+REM Create the note content and save it to a file on the Desktop
+STRING $desktop = [Environment]::GetFolderPath("Desktop"); $note = @"
+ENTER
+STRING *** Cyber Assessment Suite - Manual Execution Required ***
 ENTER
 STRING Script downloaded: C:\temp\08_Policy_Auditing_Logging_Check.ps1
 ENTER
@@ -30,14 +32,12 @@ STRING Please open PowerShell IDE as Administrator, then run the script manually
 ENTER
 STRING This script requires elevated permissions and will not be run automatically.
 ENTER
-STRING '
+STRING "@
 ENTER
-DELAY 300
-
-STRING Set-Content -Path "$env:USERPROFILE\Desktop\READ_THIS_FIRST.txt" -Value $note
+STRING Set-Content -Path "$desktop\READ_THIS_FIRST.txt" -Value $note
 ENTER
 DELAY 500
 
 REM Open the text file in Notepad to alert the user
-STRING notepad "$env:USERPROFILE\Desktop\READ_THIS_FIRST.txt"
+STRING notepad "$desktop\READ_THIS_FIRST.txt"
 ENTER
