@@ -5,6 +5,14 @@
 A personal collection of resources, payloads, and modules for the **Flipper Zero** multi-tool device.  
 This repository is designed to extend Flipper's capabilities with organized, ready-to-use files.
 
+
+## 🛡️ Cyber Assessment Suite (CAS)
+
+A collection of PowerShell + BadUSB scripts for assessing Windows security configurations.  
+Originally designed to run through Flipper Zero (or Rubber Ducky), the suite helps check policies, logging, users, firewall status and more.
+
+📂 [**Explore the CAS folder**](https://github.com/nuggetz/flipper/tree/main/badusb/cyber-assessment-suite)
+
 ## ⚠️ Legal Disclaimer
 
 > **This project is intended for educational, research, and authorized auditing purposes only.**
