@@ -25,6 +25,17 @@ The project was developed with research and auditing purposes in mind and helps 
 - Modular script structure, each script checks a specific area.
 - Read-only data collection with clear status and local logging.
 
+## ⚠️ Keyboard Layout Notice
+The BadUSB scripts are written for the **US keyboard layout**. 
+
+If you're using a different layout (e.g., IT, DE, FR), please:
+
+- Adjust the `ALT` key sequence used to confirm UAC prompts.
+- For example: `ALT+Y` on US may be `ALT+S` on Italian.
+
+I **strongly recommend** users familiar with scripting to adapt the layout section themselves.
+Each DuckyScript includes a reminder comment.
+
 ## 🧪 Included Assessment Checks
 
 | ID  | Script Name                      | Description |
