@@ -41,13 +41,15 @@ Each DuckyScript includes a reminder comment.
 | ID  | Script Name                      | Description |
 |-----|----------------------------------|-------------|
 | 01  | Unauthorized Software Check      | Verifies installed programs against a trusted allowlist |
-| 02  | Windows Update & Patch Status    | Checks patch level, missing KBs, and update settings |
-| 03  | Account & Privilege Check        | Evaluates user accounts, admin groups, and built-ins |
-| 04  | Local Protection Controls        | BitLocker, UAC, Windows Defender AV status |
-| 05  | Firewall & Defender Status       | Active firewall profiles, Defender protections |
-| 06  | Remote Services Exposure         | Detects active services like RDP, SSH, VNC, WinRM |
-| 07  | Policy Auditing & Logging        | Audit policy, security log size, event forwarding |
-| 08  | Persistence Mechanisms           | Run keys, startup folders, scheduled tasks |
+| 02  | Legacy Services Status           | Detects presence and status of legacy or insecure services like Telnet, SMBv1, RDP |
+| 03  | Network Shares Status            | Lists active network shares and checks for potentially insecure configurations |
+| 04  | Policy Auditing & Logging        | Audit policy, security log size, event forwarding |
+| 05  | Account & Privilege Check        | Evaluates user accounts, admin groups, and built-ins |
+| 06  | Firewall & Defender Status       | Active firewall profiles, Defender protections |
+| 07  | Local Protection Controls        | BitLocker, UAC, Windows Defender AV status |
+| 08  | Policy Auditing & Logging        | Audit policy, security log size, event forwarding (must be executed manually) |
+| 09  | Remote Services Exposure         | Detects active services like RDP, SSH, VNC, WinRM |
+| 10  | Persistence Mechanisms           | Run keys, startup folders, scheduled tasks |
 
 ## 📚 Security Standards Reference
 
