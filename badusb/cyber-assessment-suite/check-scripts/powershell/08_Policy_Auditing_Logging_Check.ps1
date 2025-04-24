@@ -2,6 +2,20 @@
   Cyber Assessment Suite - PowerShell Scripts
   Version: 1.0
   Author: nuggetz (github.com/nuggetz)
+  Year: 2025
+
+  Description:
+  PowerShell scripts for automated security auditing of Windows 10/11 systems.
+  Developed to be used with Flipper Zero BadUSB payloads.
+
+  Frameworks and Guidelines:
+  CIS Benchmarks, Microsoft Security Baselines, NSA STIG, NIST 800-53, ISO 27001, OWASP, ANSSI.
+
+  License:
+  For educational and ethical testing use only. Any misuse is the sole responsibility of the user.
+
+  Project Repository and guides:
+  https://github.com/nuggetz/flipper
 #>
 
 # Script: 08_Policy_Auditing_Logging_Check.ps1
