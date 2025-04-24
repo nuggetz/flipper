@@ -1,25 +1,33 @@
 REM Author: nuggetz
-REM Script: Cyber Assessment Suite - Check Unauthorized Software
+REM Script: Cyber Assessment suite - Check Unauthorized Software
 REM Description: Download and execute the unauthorized software check PowerShell script
 REM Target: Windows 10/11
-
-REM === NOTE: Keyboard Layout ===
-REM This script is written for US keyboard layout.
-REM If you are using a different layout (e.g., Italian, French, German),
-REM you may need to adjust the ALT key combination for UAC prompts.
-REM Example: ALT+Y (US) may be ALT+S (Italian).
-REM Modify accordingly before running.
+REM Note: Adjust ALT key combo for UAC depending on keyboard layout (e.g., ALT+S for ITA, ALT+Y for US)
 
 DELAY 500
 GUI r
 DELAY 500
-STRING powershell -NoExit -ExecutionPolicy Bypass -Command "Start-Process powershell -Verb runAs"
+STRING powershell
+ENTER
+DELAY 800
+
+REM Assicurati che la cartella esista
+STRING if (-not (Test-Path 'C:\temp')) { New-Item -ItemType Directory -Path 'C:\temp' }
+ENTER
+DELAY 800
+
+REM Scarica lo script
+STRING iwr -Uri "https://raw.githubusercontent.com/nuggetz/flipper/refs/heads/main/badusb/cyber-assessment-suite/check-scripts/powershell/01_Unauthorized_Software_Check.ps1" -OutFile "C:\temp\unauth_check.ps1"
+ENTER
+DELAY 1000
+
+REM Scarica la blocklist
+STRING iwr -Uri "https://raw.githubusercontent.com/nuggetz/flipper/refs/heads/main/badusb/cyber-assessment-suite/check-scripts/powershell/blocklist.txt" -OutFile "C:\temp\blocklist.txt"
+ENTER
+DELAY 1000
+
+REM Avvia lo script come amministratore
+STRING Start-Process 'powershell.exe' -ArgumentList '-ExecutionPolicy Bypass -File C:\temp\unauth_check.ps1' -Verb RunAs
 ENTER
 DELAY 1500
 ALT y
-DELAY 1000
-STRING iwr -UseBasicParsing -Uri "https://raw.githubusercontent.com/nuggetz/flipper/main/badusb/cyber-assessment-suite/check-scripts/powershell/01_Unauthorized_Software_Check.ps1" -OutFile "$env:TEMP\unauth_check.ps1"
-ENTER
-DELAY 1000
-STRING powershell -ExecutionPolicy Bypass -File "$env:TEMP\unauth_check.ps1"
-ENTER
